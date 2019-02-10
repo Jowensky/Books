@@ -10,7 +10,9 @@ const style = {
 const Card = props => {
   return (
     <div className="card" style={style.size}>
+    <a href={props.link} target="_blank" rel="noopener noreferrer">
       <img className="card-img-top" href={props.link} src={props.image} alt={props.key}/>
+      </a>
       <div className="card-body">
         <h5 className="card-title">{props.title}</h5>
         <p className="card-text">{props.synopsis}</p>
