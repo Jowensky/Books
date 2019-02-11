@@ -4,14 +4,13 @@ import search from "./pages/search";
 import saved from "./pages/saved";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
-import Jumbotron from "./components/Jumbotron";
+import './style/App.css'
 
 function App() {
   return (
     <Router>
       <div>
         <Nav />
-        <Jumbotron />
         <Switch>
           <Route exact path="/" component={search} />
           <Route exact path="/books" component={search} />

@@ -105,7 +105,7 @@ class Search extends Component {
             ))}
           </div>
         ) : (
-          <h3>No Results to Display</h3>
+          <div></div>
         )}
       </div>
     );
