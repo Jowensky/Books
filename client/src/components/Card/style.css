@@ -10,6 +10,7 @@
 #cover {
     height: 180px;
     width: 120px;
+    transition: opacity 1s;
 }
 
 .overlay {
@@ -24,6 +25,7 @@
     transition: .5s ease;
     background-color: rgb(255, 255, 255);
     overflow: scroll;
+    transition: opacity 1s;
 }
 
 .contain:hover .overlay {
@@ -53,7 +55,7 @@
     position: absolute;
     left: 190px;
     transition: font-size .5s;
-    z-index: 2;
+    z-index: 1;
 }
 
 .task:hover {
