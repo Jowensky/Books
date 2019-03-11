@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import API from "../utils/API";
 import Card from "../components/Card";
+import API from "../utils/API";
+import Icons from "../components/Icons";
+import  BooksContainer from "../components/Container";
+import { TopBar, ResumeDL, Dots, GoogleBooks, Books } from '../components/ControlBar'
 
 class saved extends Component {
   state = {
@@ -14,41 +17,46 @@ class saved extends Component {
   getBooks = () => {
     API.getBooks()
       .then(({ data }) => this.setState({ books: data }))
-      .catch(err => console.log(err));
   };
 
   deleteBook = bookId => {
     API.deleteBook(bookId)
-      .then(console.log(`deleted`))
-      .catch(err => console.log(err));
+      .then(() => window.location.reload())
   };
 
   render() {
     return (
-      <div className="container-fluid">
-      {this.state.books.length ? (
-       <div className="row">
-          {this.state.books.map((book, index) => (
-            <div className="col-sm-4">
-              <form>
-                <Card 
-                image={book.image}
-                title={book.title}
-                key={index}
-                id={book._id}
-                synopsis={book.synopsis}
-                authors={book.authors}
-                delORsav={this.deleteBook}
-                link={book.link}
-                task={'Delete'}
-                />
-              </form>
+      <div>
+        <BooksContainer>
+          <TopBar>
+            <Dots />
+            <GoogleBooks />
+            <Books />
+            <ResumeDL />
+          </TopBar>
+          {this.state.books.length ? (
+            <div className="row">
+              {this.state.books.map((book, index) => (
+                <div className="col-sm-4">
+                  <form>
+                    <Card 
+                      image={book.image}
+                      title={book.title}
+                      key={index}
+                      synopsis={book.synopsis}
+                      authors={book.authors}
+                      link={book.link}
+                      task={<i className="fas fa-ban task" onClick={() => this.deleteBook(book._id)} />}
+                    />
+                  </form>
+                </div>
+              ))}
             </div>
-          ))}
-            </div>
-      ) : (
-        <div></div>
-      )}
+          ) : (
+            <div />
+          )}
+        </BooksContainer>
+        <Icons />
       </div>
     );
   }

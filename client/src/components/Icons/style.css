@@ -1,0 +1,15 @@
+#icons {
+    float: right;
+    margin-right: 7px;
+}
+
+#icons img {
+    width: 47px;
+    margin-bottom: 12px;
+}
+
+@media screen and (max-width: 900px) { 
+    #icons {
+        display: none
+    }
+}
