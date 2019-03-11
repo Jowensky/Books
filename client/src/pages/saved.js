@@ -46,7 +46,7 @@ class saved extends Component {
                       synopsis={book.synopsis}
                       authors={book.authors}
                       link={book.link}
-                      task={<i className="fas fa-ban task" onClick={() => this.deleteBook(book._id)} />}
+                      task={<i className="fas fa-bookmark task" onClick={() => this.deleteBook(book._id)} />}
                     />
                   </form>
                 </div>
