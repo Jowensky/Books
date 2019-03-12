@@ -17,8 +17,7 @@
 }
 
 .grey #title {
-    /* text-align: center; */
-    left: 37%;
+    left: 48%;
     top: 0;
     margin: 0;
     font-size: 13px;
@@ -53,10 +52,10 @@
 
 #Resume i {
    position: absolute;
-   left: 9px;
-   top: 2px;
+   left: 9.5px;
+   top: 3px;
    color: rgb(92, 92, 92);
-   font-size: 16px;
+   font-size: 15px;
 }
 
 #searchAction:hover {
@@ -110,7 +109,7 @@
 .groups {
     position: absolute; 
     height: 16px;
-    top: 19px;
+    top: 21px;
     background-color: white;
     font-size: 12px;
     left: 36%;
