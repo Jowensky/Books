@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Card from "../components/Card";
 import API from "../utils/API";
 import Icons from "../components/Icons";
-import  BooksContainer from "../components/Container";
+import BooksContainer from "../components/Container";
 import { TopBar, ResumeDL, Dots, GoogleBooks, Books } from '../components/ControlBar'
 
 class saved extends Component {
@@ -21,7 +21,7 @@ class saved extends Component {
 
   deleteBook = bookId => {
     API.deleteBook(bookId)
-      .then(() => window.location.reload())
+      .then(() => this.getBooks())
   };
 
   render() {
@@ -38,7 +38,6 @@ class saved extends Component {
             <div className="row">
               {this.state.books.map((book, index) => (
                 <div className="col-sm-4">
-                  <form>
                     <Card 
                       image={book.image}
                       title={book.title}
@@ -48,7 +47,6 @@ class saved extends Component {
                       link={book.link}
                       task={<i className="fas fa-bookmark task" onClick={() => this.deleteBook(book._id)} />}
                     />
-                  </form>
                 </div>
               ))}
             </div>
