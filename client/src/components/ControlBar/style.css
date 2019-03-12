@@ -1,6 +1,6 @@
 .darker {
     background-color: grey !important;
-    /* color: white !important; */
+    color: white !important;
 }
 
 .grey {
@@ -18,7 +18,7 @@
 
 .grey #title {
     /* text-align: center; */
-    left: 48%;
+    left: 37%;
     top: 0;
     margin: 0;
     font-size: 13px;
@@ -110,7 +110,7 @@
 .groups {
     position: absolute; 
     height: 16px;
-    top: 21px;
+    top: 19px;
     background-color: white;
     font-size: 12px;
     left: 36%;
