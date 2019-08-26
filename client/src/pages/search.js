@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import {graphql} from 'react-apollo'
 import Card from "../components/Card";
-import API from "../utils/API";
 import Icons from "../components/Icons";
 import  BooksContainer from "../components/Container";
-import { TopBar, Input, ResumeDL, Dots, GoogleBooks, Books } from '../components/ControlBar'
+import { TopBar, Input, ResumeDL, Dots, GoogleBooks } from '../components/ControlBar'
+import { addBookMutation, getBooksQuery }from '../queries'
+import API from "../utils/API";
 
 class Search extends Component {
 
@@ -32,7 +34,6 @@ class Search extends Component {
 
     API.googleBooks(this.state.author)
     .then(({ data: { items } }) => {
-      console.log(items);
       const books = items.map(book => {
         const cheakEmpty = script => {
           if (script) {
@@ -41,9 +42,14 @@ class Search extends Component {
             return ``;
           }
         };
+        const getAuthor = author => {
+          for ( let x in author ) {
+            return `${author[x]} `
+          }
+        }
         return {
           title: book.volumeInfo.title,
-          authors: book.volumeInfo.authors,
+          authors: getAuthor(book.volumeInfo.authors),
           synopsis: cheakEmpty(book.volumeInfo.description),
           id: book.id,
           image: book.volumeInfo.imageLinks.thumbnail,
@@ -54,13 +60,24 @@ class Search extends Component {
         books: books,
         author: "" 
       });
+      console.log(this.state.books)
     })
   }
 
   saveBook = bookId => {
     const savethis = this.state.books.find(({ id }) => id === bookId);
     this.setState({ saved: [...this.state.saved, bookId] })
-    API.saveBook(savethis)
+    this.props.addBookMutation({
+      variables: {
+          title: savethis.title,
+          authors: savethis.authors,
+          synopsis: savethis.synopsis,
+          image: savethis.image,
+          link: savethis.link,
+          id: savethis.id
+      },
+      refetchQueries: [{ query: getBooksQuery }]
+    });
   };
 
   render() {
@@ -69,8 +86,10 @@ class Search extends Component {
         <BooksContainer>
           <TopBar>
             <Dots />
-            <GoogleBooks />
-            <Books />
+            <GoogleBooks 
+              link="libary"
+              directory="Libary"
+            />
             <ResumeDL />
             <Input
               onSubmit={this.Googlebooks}
@@ -105,4 +124,4 @@ class Search extends Component {
   }
 }
 
-export default Search;
+export default graphql(addBookMutation, {name: "addBookMutation"})(Search);

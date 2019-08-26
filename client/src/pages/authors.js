@@ -1,24 +1,26 @@
 import React, { Component } from "react";
-import CardQL from "../components/CardQL";
+import API from "../utils/API";
 import Icons from "../components/Icons";
 import BooksContainer from "../components/Container";
 import { TopBar, ResumeDL, Dots, GoogleBooks, Books } from '../components/ControlBar'
-import {graphql} from 'react-apollo'
-import { deleteBookMutation } from '../queries';
 
-class saved extends Component {
+class Authors extends Component {
   state = {
-    books: [],
-    delete: -1
+    books: []
   };
 
-  deleteBook = book => {
-    console.log(book)
-    this.props.deleteBookMutation({
-      variables: {
-        link: book
-      }
-    });
+  componentDidMount() {
+    this.getBooks();
+  }
+
+  getBooks = () => {
+    API.getBooks()
+      .then(({ data }) => this.setState({ books: data }))
+  };
+
+  deleteBook = bookId => {
+    API.deleteBook(bookId)
+      .then(() => this.getBooks())
   };
 
   render() {
@@ -36,9 +38,6 @@ class saved extends Component {
             <Books />
             <ResumeDL />
           </TopBar>
-          <CardQL 
-            task={this.deleteBook}
-          />
         </BooksContainer>
         <Icons />
       </div>
@@ -46,4 +45,4 @@ class saved extends Component {
   }
 }
 
-export default graphql(deleteBookMutation, {name: "deleteBookMutation"})(saved);
+export default Authors;
