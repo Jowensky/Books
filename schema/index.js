@@ -64,7 +64,6 @@ const Mutation = new GraphQLObjectType({
                     synopsis: args.synopsis,
                     image: args.image,
                     link: args.link
-
                 })
                 return book.save();
             }

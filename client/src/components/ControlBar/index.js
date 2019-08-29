@@ -58,11 +58,11 @@ export function Books() {
             All Books
           </button>
         </Link>
-        <Link to="/authors">
+        {/* <Link to="/authors">
           <button id="authors" className={window.location.pathname === "/authors" ? "darker" : ""}>
             Authors
           </button>
-        </Link>
+        </Link> */}
       </div>
   );
 }
