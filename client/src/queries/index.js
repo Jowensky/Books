@@ -42,7 +42,9 @@ const addBookMutation = gql`
 
 const deleteBookMutation = gql`
   mutation($link: String!) {
-    deleteNovel(link: $link)
+    deleteNovel(link: $link) {
+      link
+    }
   }
 `
 

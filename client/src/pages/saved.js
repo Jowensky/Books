@@ -4,7 +4,7 @@ import Icons from "../components/Icons";
 import BooksContainer from "../components/Container";
 import { TopBar, ResumeDL, Dots, GoogleBooks, Books } from '../components/ControlBar'
 import {graphql} from 'react-apollo'
-import { deleteBookMutation } from '../queries';
+import { deleteBookMutation, getBooksQuery } from '../queries';
 
 class saved extends Component {
   state = {
@@ -17,7 +17,8 @@ class saved extends Component {
     this.props.deleteBookMutation({
       variables: {
         link: book
-      }
+      },
+      refetchQueries: [{ query: getBooksQuery }]
     });
   };
 

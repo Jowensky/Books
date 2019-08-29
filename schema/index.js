@@ -71,12 +71,29 @@ const Mutation = new GraphQLObjectType({
         },
         deleteNovel: {
             type: Novels,
-            args: {id: {type: GraphQLString}},
+            args: {
+                link: {type: new GraphQLNonNull(GraphQLString)},
+            },
             resolve: (parent, args) => {
-                return Books.findOneAndDelete({ link: args.id });
+                return Books.deleteOne({ link: args.link });
             }
         }
     }
+});
+
+const MutationType = new GraphQLObjectType({
+    name: "MutationType",
+    fields: () => ({
+        deleteNovel: {
+            type: Novels,
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLString)}
+            },
+            resolve: (value, { id }) => {
+                return ArticleServices.delete({ link: id});
+            }
+        }
+    }),
 });
 
 module.exports = new GraphQLSchema({
