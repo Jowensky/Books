@@ -6,7 +6,7 @@ import { TopBar, ResumeDL, Dots, GoogleBooks, Books } from '../components/Contro
 import {graphql} from 'react-apollo'
 import { deleteBookMutation, getBooksQuery } from '../queries';
 
-class saved extends Component {
+class Saved extends Component {
   state = {
     books: [],
     delete: -1
@@ -47,4 +47,4 @@ class saved extends Component {
   }
 }
 
-export default graphql(deleteBookMutation, {name: "deleteBookMutation"})(saved);
+export default graphql(deleteBookMutation, {name: "deleteBookMutation"})(Saved);

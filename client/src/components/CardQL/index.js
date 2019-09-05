@@ -14,10 +14,9 @@ class Card extends Component {
         </div>
       )
     } else {
-      console.log(data)
-      return data.novels.map(novel => {
+      return data.novels.map((novel, index) => {
         return (
-          <div className="col-4">
+          <div className="col-4" key={index}>
             <div className="books">
             <i className={`fas fa-bookmark task`} onClick={() => this.props.task(novel.link)} />
               <div className="contain">

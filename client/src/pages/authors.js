@@ -1,26 +1,34 @@
 import React, { Component } from "react";
-import API from "../utils/API";
+import {graphql} from 'react-apollo'
 import Icons from "../components/Icons";
 import BooksContainer from "../components/Container";
 import { TopBar, ResumeDL, Dots, GoogleBooks, Books } from '../components/ControlBar'
+import AuthorsList from '../components/AuthorsList';
+import AuthorsNovel from '../components/AuthorsNovel';
+import { deleteBookMutation, getBooksQuery } from '../queries';
 
 class Authors extends Component {
-  state = {
-    books: []
-  };
 
-  componentDidMount() {
-    this.getBooks();
+  state = {
+    selected: ""
+  } 
+
+  chosenAuthor = prop => {
+    console.log(prop)
+    const author = prop
+
+    this.setState({selected: author});
   }
 
-  getBooks = () => {
-    API.getBooks()
-      .then(({ data }) => this.setState({ books: data }))
-  };
 
-  deleteBook = bookId => {
-    API.deleteBook(bookId)
-      .then(() => this.getBooks())
+  deleteBook = book => {
+    console.log(book)
+    this.props.deleteBookMutation({
+      variables: {
+        link: book
+      },
+      refetchQueries: [{ query: getBooksQuery }]
+    });
   };
 
   render() {
@@ -38,6 +46,17 @@ class Authors extends Component {
             <Books />
             <ResumeDL />
           </TopBar>
+          <div className="container-fluid">
+            <div className="row">
+              <AuthorsList 
+                selectedAuthor={this.chosenAuthor}
+              />
+              <AuthorsNovel 
+                author={this.state.selected} 
+                // task={this.deleteBook}
+              /> 
+            </div>
+          </div>
         </BooksContainer>
         <Icons />
       </div>
@@ -45,4 +64,4 @@ class Authors extends Component {
   }
 }
 
-export default Authors;
+export default graphql(deleteBookMutation, {name: "deleteBookMutation"})(Authors);
