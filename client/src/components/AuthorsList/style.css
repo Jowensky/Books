@@ -1,0 +1,16 @@
+#selectAuthor:hover {
+    cursor: pointer;
+}
+
+#selectAuthor p {
+    padding-left: 15px;
+    padding-top: 6px;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    height: 35px;
+    font-size: 14px;
+}
+
+.blue {
+    background-image: linear-gradient(to right, rgba(94, 94, 223, .7), rgba(255,0,0,0))  !important;
+}

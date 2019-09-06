@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import {graphql} from 'react-apollo'
 import Icons from "../components/Icons";
 import BooksContainer from "../components/Container";
 import { TopBar, ResumeDL, Dots, GoogleBooks, Books } from '../components/ControlBar'
 import AuthorsList from '../components/AuthorsList';
 import AuthorsNovel from '../components/AuthorsNovel';
-import { deleteBookMutation, getBooksQuery } from '../queries';
 
 class Authors extends Component {
 
@@ -14,22 +12,10 @@ class Authors extends Component {
   } 
 
   chosenAuthor = prop => {
-    console.log(prop)
     const author = prop
 
     this.setState({selected: author});
   }
-
-
-  deleteBook = book => {
-    console.log(book)
-    this.props.deleteBookMutation({
-      variables: {
-        link: book
-      },
-      refetchQueries: [{ query: getBooksQuery }]
-    });
-  };
 
   render() {
     return (
@@ -50,10 +36,10 @@ class Authors extends Component {
             <div className="row">
               <AuthorsList 
                 selectedAuthor={this.chosenAuthor}
+                selected={this.state.selected}
               />
               <AuthorsNovel 
                 author={this.state.selected} 
-                // task={this.deleteBook}
               /> 
             </div>
           </div>
@@ -64,4 +50,4 @@ class Authors extends Component {
   }
 }
 
-export default graphql(deleteBookMutation, {name: "deleteBookMutation"})(Authors);
+export default Authors;

@@ -6,6 +6,7 @@
 
 .contain {
     position: relative;
+    margin-top: 20px;
 }
 
 #cover {
@@ -16,7 +17,7 @@
 
 .overlay {
     position: absolute;
-    top: 0;
+    top: 5;
     bottom: 0;
     left: 0;
     right: 0;
@@ -44,7 +45,7 @@
 
 .text {
     padding-top: 12px;
-    margin-top: 17px;
+    margin-top: 22px;
     color: black;
     font-size: 8px;
     position: absolute;

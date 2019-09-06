@@ -6,7 +6,6 @@
 .grey {
     position: sticky;
     top: 0;
-    margin-bottom: 20px;
     background-color: rgb(223, 220, 220);
     border-bottom: .5px solid rgb(213, 213, 213);
     height: 45px;

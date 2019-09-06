@@ -2,19 +2,25 @@ import React, { Component } from "react";
 import { graphql } from "react-apollo";
 import { getBooksQuery } from "../../queries";
 import "./style.css";
+import AuthorContainer from '../AuthorContainer';
 
 class AuthorsList extends Component {
 
+  
   displayAuthors = () => {
     const data = this.props.data;
     if (data.loading) {
       return <div>Loading Authors...</div>;
     } else {
-      return data.novels.map((novel, index) => {
+      const authors = data.novels.map(item => item.authors)
+      const uniqueAuthors = authors.filter((item, index) => {
+        return authors.indexOf(item) >= index;
+      })
+      return uniqueAuthors.map((author, index) => {
           return (
-            <div key={index}>
-              <p onClick={() => this.props.selectedAuthor(novel.authors)}>
-                {novel.authors}
+            <div id="selectAuthor" className={this.props.selected === author ? "blue" : "none"} key={index}>
+              <p onClick={() => this.props.selectedAuthor(author)}>
+                {author}
               </p>
             </div>
           );
@@ -23,7 +29,7 @@ class AuthorsList extends Component {
   };
 
   render() {
-    return <div className="col-md-3">{this.displayAuthors()}</div>;
+    return <AuthorContainer>{this.displayAuthors()}</AuthorContainer>;
   }
 }
 

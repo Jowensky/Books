@@ -14,10 +14,11 @@ class AuthorNovels extends Component {
         </div>
       )
     } else {
-      return data.authors.map(novel => {
+      console.log(data)
+      return data.authors.map((novel, index) => {
         return (
-          <div className="books">
-            <div className="contain">
+          <div className="col-md-4">
+            <div className="contain" key={index}>
               <a href={novel.link} target="_blank" rel="noopener noreferrer">
                 <img id="cover" href={novel.link} src={novel.image} alt={novel.key} />
               </a>
@@ -32,10 +33,12 @@ class AuthorNovels extends Component {
   }
 
   render() {
-    return (
-        <div className="col-md-9">
-          {this.displayBooks()}
-        </div>
+    return ( 
+    <div className="col-md-9">
+      <div className="row">
+        {this.displayBooks()}
+      </div>
+    </div>
     )
   }
 }
