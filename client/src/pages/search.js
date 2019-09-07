@@ -60,7 +60,6 @@ class Search extends Component {
         books: books,
         author: "" 
       });
-      console.log(this.state.books)
     })
   }
 

@@ -14,7 +14,6 @@ class AuthorNovels extends Component {
         </div>
       )
     } else {
-      console.log(data)
       return data.authors.map((novel, index) => {
         return (
           <div className="col-md-4">
