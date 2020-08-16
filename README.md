@@ -6,6 +6,6 @@ Succeeding cloneing this repo, run *yarn* or *npm install* in your selected IDE 
 
 # Built With
 - Express - Node
-- GraphQL - Applo GraphQL
+- GraphQL - Applo GraphQL - Express GraphQL
 - MongoDB
 - React
