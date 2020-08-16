@@ -11,3 +11,6 @@ Succeeding cloning this repo, run *yarn* or *npm install* in your selected IDE t
 - GraphQL - Applo GraphQL - Express GraphQL
 - MongoDB
 - React
+
+# Deployment
+https://whispering-ridge-39668.herokuapp.com/
