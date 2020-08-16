@@ -1,6 +1,8 @@
 # Books
 *Apple inspired Book app* Allows you to **search**, **save**, and **preview** books found in Google Books API.
 
+![RideShare](/public/images/UI.png)
+
 # Getting Start
 Succeeding cloning this repo, run *yarn* or *npm install* in your selected IDE then *yarn start*
 
